@@ -6,7 +6,7 @@
 *.har
 
 # User specific Configuration
-config.yml
+config.yaml
 
 #
 # Default Github Python .gitignore
