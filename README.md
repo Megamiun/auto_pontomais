@@ -6,7 +6,7 @@ Script to automatize clocking in and out of the online system `Pontomais` on sta
 
 ### Prerequisites
 
-First you need to have Python 3 and pip3 installed in your computer On Debian based systems, you can use the following commands to do that:
+First you need to have Python 3 and pip3 installed in your computer. On Debian based systems, you can use the following commands to do that:
 
 ```
 sudo apt-get update

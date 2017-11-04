@@ -8,6 +8,9 @@
 # User specific Configuration
 config.yaml
 
+# IDEA files
+.idea/*
+
 #
 # Default Github Python .gitignore
 #

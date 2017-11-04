@@ -1,4 +1,4 @@
 requests
-json
+simplejson
 setuptools
 pyyaml
