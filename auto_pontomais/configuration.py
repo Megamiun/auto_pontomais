@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 from os import linesep
 import yaml
 
@@ -9,23 +7,32 @@ CONFIG_FILE_NAME = 'config.yaml'
 
 
 class ConfigData:
-
+    """User given fields"""
     password = None
-    token = None
     login = None
 
-    def __init__(self, login=None, password=None, token=None):
+    """Server given fields"""
+    client = None
+    token = None
+    uid = None
+
+    def __init__(self, login=None, password=None, token=None, uid=None, client=None):
         self.password = password
-        self.token = token
         self.login = login
+
+        self.client = client
+        self.token = token
+        self.uid = uid
 
     def __repr__(self):
         return yaml.dump(self)
 
-    def overwrite(self, login=None, password=None, token=None):
+    def overwrite(self, login=None, password=None, token=None, uid=None, client=None):
         return ConfigData(password=password or self.password,
                           login=login or self.login,
-                          token=token or self.token)
+                          client=client or self.client,
+                          token=token or self.token,
+                          uid=uid or self.uid)
 
 
 def get_default_configuration():

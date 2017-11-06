@@ -1,30 +1,31 @@
-#!/usr/bin/env python3
-
-import configuration
 import requests
 
-PONTOMAIS_API = 'https://api.pontomaisweb.com.br/api'
+from auto_pontomais import configuration
+from auto_pontomais.api import constants, util
 
 
-def sign_in(login=None, password=None):
+def register(login=None, password=None):
     """Try to sign in with the default configuration if custom data not given.
     :param login: Custom login info
     :param password: Custom password info
     :return: Configuration with login data
     """
     config = configuration.get_default_configuration()
-    config, response = do_login(config, login, password)
+    config, response = __do_login(config, login, password)
 
     while not response.ok:
         print("Couldn't login with user '{}', status code {}. Try again:".format(config.login, response.status_code))
         login = input("Login: ")
         password = input("Password: ")
-        config, response = do_login(config, login, password)
+        config, response = __do_login(config, login, password)
 
-    return config.overwrite(token=response.json()['token'])
+    json = response.json()
+    return config.overwrite(token=json['token'],
+                            client=json['client_id'],
+                            uid=json['data']['email'])
 
 
-def do_login(config, login, password):
+def __do_login(config, login, password):
     """
     :param config: Previous configuration
     :param login: Login string
@@ -41,21 +42,7 @@ def __log_in(config):
     :param config: Configuration data for login
     :return: Response for login request
     """
-    return requests.post(__get_sign_in_url(), json=__get_login_json(config), headers=__get_headers_for_json())
-
-
-def __get_sign_in_url():
-    """
-    :return: Pontomais sign-in endpoint
-    """
-    return ''.join([PONTOMAIS_API, '/auth/sign_in'])
-
-
-def __get_headers_for_json():
-    """
-    :return: Headers for json requests
-    """
-    return {'Content-Type': 'application/json'}
+    return requests.post(constants.LOGIN_ENDPOINT, json=__get_login_json(config), headers=util.get_headers_for_json())
 
 
 def __get_login_json(config):
