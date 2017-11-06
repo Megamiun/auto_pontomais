@@ -1,7 +1,7 @@
 from os import linesep
 import yaml
 
-CONFIG_DATA_HEADER = '!!python/object:configuration.ConfigData'
+CONFIG_DATA_HEADER = '!!python/object:auto_pontomais.configuration.ConfigData'
 
 CONFIG_FILE_NAME = 'config.yaml'
 
@@ -28,6 +28,9 @@ class ConfigData:
         return yaml.dump(self)
 
     def overwrite(self, login=None, password=None, token=None, uid=None, client=None):
+        """
+        :return: Modified DataConfig with the given parameters changed
+        """
         return ConfigData(password=password or self.password,
                           login=login or self.login,
                           client=client or self.client,

@@ -1,17 +1,20 @@
+#!/usr/bin/env python3
+
 import argparse
 
 from auto_pontomais.api.login import sign_in
+from auto_pontomais.api.clock import clock_in
 
 
-def __main(args):
-    login = get_first_or_default(args.login)
-    password = get_first_or_default(args.password)
+def main(args=None):
+    login = __get_first_or_default(args.login)
+    password = __get_first_or_default(args.password)
     config = sign_in(login=login, password=password)
 
+#   clock_in(config)
 
 
-
-def get_first_or_default(item, default=None):
+def __get_first_or_default(item, default=None):
     """
     :param item: List to extract item
     :param default: Default value if list is None
@@ -32,4 +35,4 @@ def __parse_args():
 
 
 if __name__ == '__main__':
-    __main(__parse_args())
+    main(__parse_args())

@@ -4,7 +4,7 @@ from auto_pontomais import configuration
 from auto_pontomais.api import constants, util
 
 
-def register(login=None, password=None):
+def sign_in(login=None, password=None):
     """Try to sign in with the default configuration if custom data not given.
     :param login: Custom login info
     :param password: Custom password info
