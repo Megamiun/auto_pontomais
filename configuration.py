@@ -9,17 +9,23 @@ CONFIG_FILE_NAME = 'config.yaml'
 
 
 class ConfigData:
-    def __init__(self, login=None, password=None):
+
+    password = None
+    token = None
+    login = None
+
+    def __init__(self, login=None, password=None, token=None):
         self.password = password
+        self.token = token
         self.login = login
 
     def __repr__(self):
         return yaml.dump(self)
 
-    def overwrite(self, login=None, password=None):
-        new_login = login or self.login
-        new_password = password or self.password
-        return ConfigData(login=new_login, password=new_password)
+    def overwrite(self, login=None, password=None, token=None):
+        return ConfigData(password=password or self.password,
+                          login=login or self.login,
+                          token=token or self.token)
 
 
 def get_default_configuration():

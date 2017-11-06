@@ -16,13 +16,12 @@ def sign_in(login=None, password=None):
     config, response = do_login(config, login, password)
 
     while not response.ok:
-        print("Couldn't login with user '" + str(config.login) + "', status code "
-              + str(response.status_code) + ". Try again:")
+        print("Couldn't login with user '{}', status code {}. Try again:".format(config.login, response.status_code))
         login = input("Login: ")
         password = input("Password: ")
         config, response = do_login(config, login, password)
 
-    return config
+    return config.overwrite(token=response.json()['token'])
 
 
 def do_login(config, login, password):
