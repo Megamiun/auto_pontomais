@@ -2,3 +2,4 @@ requests
 simplejson
 setuptools
 pyyaml
+pathlib
