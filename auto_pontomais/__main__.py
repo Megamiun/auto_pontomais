@@ -6,10 +6,7 @@ import getpass
 from auto_pontomais.api.clock import clock_in, clock_out
 from auto_pontomais.api.login import sign_in
 from auto_pontomais.api.status import is_on_journey
-from auto_pontomais.persistence.persistence import get_default_user_config
-from auto_pontomais.persistence.persistence import get_user_config
-from auto_pontomais.persistence.persistence import save_user_config
-from auto_pontomais.persistence.persistence import update_default_config
+from auto_pontomais.persistence import update_default_config, save_user_config, get_user_config, get_default_user_config
 
 
 def main(args=None):

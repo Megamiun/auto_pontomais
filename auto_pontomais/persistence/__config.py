@@ -4,9 +4,9 @@ from pathlib import Path
 
 import yaml
 
-from auto_pontomais.persistence import CONFIG_FILE
+from auto_pontomais.persistence.__constants import CONFIG_FILE
 
-DEFAULT_YAML_FILE = Path('config.default.yaml')
+DEFAULT_YAML_FILE = Path('../config.default.yaml')
 CONFIG_DATA_HEADER = '!!python/object:auto_pontomais.configuration.ConfigData'
 
 
